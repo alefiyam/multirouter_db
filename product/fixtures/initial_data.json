@@ -1,0 +1,37 @@
+[
+  { "model": "product.database",
+        "pk": 1,
+        "fields": {
+            "name": "database1",
+        }
+  },
+  
+  { "model": "product.database",
+        "pk": 2,
+        "fields": {
+            "name": "database2",
+        }
+  },
+
+  { "model": "product.database",
+        "pk": 3,
+        "fields": {
+            "name": "database3",
+        }
+  },
+
+  { "model": "product.database",
+        "pk": 4,
+        "fields": {
+            "name": "database4",
+        }
+  },
+
+  { "model": "product.database",
+        "pk": 5,
+        "fields": {
+            "name": "database5",
+        }
+  },
+
+]

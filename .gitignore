@@ -1,0 +1,8 @@
+*.pyc
+staticfiles
+.env
+*.egg-info
+*.pot
+*.py[co]
+.tox/
+__pycache__

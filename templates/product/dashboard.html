@@ -1,0 +1,26 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{{ request.user.username|title }} | Dashboard
+	</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<p> List of database assigned to <strong>{{request.user.username|title}}</strong> </p>
+			<ul>
+				{% for database in databases %}
+					<li> {{database.name|title}} </li>
+				{% endfor %}
+			</ul>
+			
+			<a href='{% url "create_product" %}'>Create New Product</a>	
+		</div>
+				
+	</div>
+
+</body>
+</html>

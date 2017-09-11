@@ -1,0 +1,22 @@
+<form action="" method="post">
+	{% csrf_token %}
+    {{ form.as_p }}
+
+
+    {% if databases %}
+    	<label>Database: </label>
+	    <select name="database">
+	    	{% for database in databases %}
+	    		<option value="{{database.id}}" >{{database.name}}</option>
+			{% endfor %}
+	    </select></br>
+    {% else %}
+    	<p> This user does not selected any databases. </p>
+    {% endif %}
+    <input type="submit" value="Save" />
+
+    {% if context_message %}
+    	<p> {{ context_message }} </p>
+	{% endif %}
+</form>
+<a href="{% url "logout" %}">logout</a>
