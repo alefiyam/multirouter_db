@@ -1,0 +1,14 @@
+<pre>
+{% if product_list %}
+	{% for list in product_list %}
+	    {% for product in list %}
+	        {{product.name}}</br>
+	        {{product.price}}</br>
+	        {{list.db}}</br> 
+	        </hr>
+	    {% endfor %}
+	{% endfor %}
+{% else %}
+	<p>"No products"</p>
+{% endif %}
+</pre>

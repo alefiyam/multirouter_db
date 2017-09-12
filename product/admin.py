@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from product.models import User, Database
+from product.models import User, Database, Product
 from product.forms import UserChangeForm, UserCreationForm
 
 # Register your models here.
@@ -208,4 +208,3 @@ class UserAdmin(admin.ModelAdmin):
             request.POST['_continue'] = 1
         return super(UserAdmin, self).response_add(request, obj,
                                                    post_url_continue)
-# admin.site.register(User, UserAdmin)

@@ -8,7 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils import six, timezone
-from django.contrib.auth.validators import ASCIIUsernameValidator, UnicodeUsernameValidator
+from django.contrib.auth.validators \
+    import ASCIIUsernameValidator, UnicodeUsernameValidator
 from django.contrib.auth.models import UserManager
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save, pre_save
@@ -36,9 +37,6 @@ class Database(models.Model):
         ordering = ('name',)
 
     _DATABASE = "default"
-
-
-
 
 
 class AbstractUser(AbstractBaseUser, PermissionsMixin):
@@ -81,7 +79,6 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     databases = models.ManyToManyField(Database)
-    # product = models.ManyToManyField(Product)
 
     def list_databases(self):
         return ', '.join([name.name for name in self.databases.all()])
@@ -133,9 +130,8 @@ class User(AbstractUser):
 class Product(models.Model):
     name = models.CharField(_('name'), max_length=30, blank=False)
     price = models.FloatField(null=False, blank=False)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # database = models.ForeignKey(Database, on_delete=models.CASCADE)
-    # _DATABASE = "default"
+    user_id = models.IntegerField(null=False, blank=False, default=None)
+
 
 from django.core.mail.message import EmailMessage
 from django.contrib.auth.tokens import default_token_generator
@@ -144,15 +140,13 @@ from django.contrib.auth.views import password_reset
 
 @receiver(post_save, sender=User)
 def send_user_data_when_created_by_admin(sender, instance, **kwargs):
-    # import pdb; pdb.set_trace()
-
-    first_name = instance.username
-    # print('first name is',first_name)
-    password = instance.password
-    # address = instance.address
-    email = instance.email
-    html_content = "your username:%s <br> password reset link:%s"
-    message = EmailMessage(subject='welcome', body=html_content %
-                           (first_name, password), to=[email])
-    # message.content_subtype='html'
-    message.send()
+    try:
+        first_name = instance.username
+        password = instance.password
+        email = instance.email
+        html_content = "your username:%s <br> password reset link:%s"
+        message = EmailMessage(subject='welcome', body=html_content %
+                               (first_name, password), to=[email])
+        message.send()
+    except Exception as e:
+        print e

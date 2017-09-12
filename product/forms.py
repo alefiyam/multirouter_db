@@ -94,14 +94,6 @@ class UserCreationForm(forms.ModelForm):
         strip=False,
         help_text=_("Enter the same password as before, for verification."),
     )
-    # databases = forms.ModelMultipleChoiceField(
-    #     queryset=Database.objects.all(),
-    #     required=True,
-    #     widget=forms.CheckboxSelectMultiple
-    # )
-
-    # class Meta:
-    #     model = Profile
 
     class Meta:
         model = User

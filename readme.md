@@ -30,6 +30,10 @@ $ python manage.py loaddata product/fixtures/initial_data.json
 
 this command will load the fake data into your database.
 
+To migrate tables in multiple databases use the following command
+
+	python manage.py migrate --database=database1
+
 To start this application just run the following command
 
     python manage.py runserver
@@ -45,5 +49,6 @@ and login by admin credentials to create user with respective database.
 
 By navigating to http://localhost:8000/login, you can access the home page of the application where you can list all the databases that user have subscribed. and also you can create product by selecting subscribed database into the selected database.
 
+Also you can check the list of products in different databases.
 
-
+To send the mail to the newly created user , please mention the smtp settings in settings.py file.
